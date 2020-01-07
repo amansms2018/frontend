@@ -91,6 +91,7 @@ public class BookControllerRestTemplateTest {
 
         ResponseEntity<Book[]> response = restTemplate.getForEntity("/books", Book[].class);
         List<Book> actual = Arrays.asList(response.getBody());
+        System.out.println("\n\n\n " + actual.toString());
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(actual.size(), books.size());

@@ -11,6 +11,10 @@ public class Book {
     @Id
     @GeneratedValue
     private Long id;
+
+    public Book() {
+    }
+
     private String name;
     private String author;
     private BigDecimal price;
