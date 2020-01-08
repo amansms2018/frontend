@@ -15,7 +15,7 @@ import java.util.List;
 @SuppressWarnings({"SqlResolve", "Unused", "WeakerAccess"})
 @Repository
 public class EmployeeRepository {
-//  @Autowired
+  @Autowired
   private  final JdbcTemplate jdbcTemplate;
 
   @Autowired
@@ -30,7 +30,6 @@ public class EmployeeRepository {
    */
   public boolean exists(long id) {
     String sqlQuery = "select count(*) from employees where id = ?";
-
     //noinspection ConstantConditions: return value is always an int, so NPE is impossible here
     int result = jdbcTemplate.queryForObject(sqlQuery, Integer.class, id);
 
@@ -137,12 +136,20 @@ public class EmployeeRepository {
   private Employee mapRowToEmployee(ResultSet resultSet, int rowNum) throws SQLException {
     // This method is an implementation of the functional interface RowMapper.
     // It is used to map each row of a ResultSet to an object.
-    return Employee.builder()
-            .id(resultSet.getLong("id"))
-            .firstName(resultSet.getString("first_name"))
-            .lastName(resultSet.getString("last_name"))
-            .yearlyIncome(resultSet.getLong("yearly_income"))
-            .build();
+//    return Employee.builder()
+//            .id(resultSet.getLong("id"))
+//            .firstName(resultSet.getString("first_name"))
+//            .lastName(resultSet.getString("last_name"))
+//            .yearlyIncome(resultSet.getLong("yearly_income"))
+//            .build();
+
+
+    return  new Employee(
+            resultSet.getLong("id"),
+            resultSet.getString("first_name"),
+            resultSet.getString("last_name"),
+            resultSet.getLong("yearly_income")
+    );
   }
 
 }
