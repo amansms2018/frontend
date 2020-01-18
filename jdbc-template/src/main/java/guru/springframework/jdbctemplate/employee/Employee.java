@@ -10,6 +10,9 @@ import java.util.Map;
 @Builder
 public class Employee {
 
+  public Employee() {
+  }
+
   private long id;
 
   public void setId(long id) {

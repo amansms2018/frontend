@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -45,6 +46,15 @@ public class EmployeeRepository {
   public Employee findOne(long id) {
     String sqlQuery = "select id, first_name, last_name, yearly_income " +
                       "from employees where id = ?";
+//    ResultSet resultSet=jdbcTemplate.queryForObject(sqlQuery,Ro id );
+//
+//    System.out.println("\n\n\n" + resultSet );
+//     Employee employee  =new Employee();
+//     employee.setId(resultSet.getLong("id"));
+//     employee.setFirstName(resultSet.getNString("first_name"));
+//    employee.setLastName(resultSet.getNString("last_name"));
+//    employee.setYearlyIncome(resultSet.getLong("yearly_income"));
+//     return  employee;
 
     return jdbcTemplate.queryForObject(sqlQuery, this::mapRowToEmployee, id);
   }
